@@ -1,56 +1,31 @@
 "use client";
 
-import {
-  Heading,
-  Text,
-  Button,
-  Column,
-  Badge,
-  Logo,
-  Line,
-  LetterFx,
-} from "@once-ui-system/core";
+import { Navigation } from "@/components/Navigation";
+import { SplineHero } from "@/components/sections/SplineHero";
+import { AboutSection } from "@/components/sections/AboutSection";
+import { ExperienceSection } from "@/components/sections/ExperienceSection";
+import { ProjectsSection } from "@/components/sections/ProjectsSection";
+import { ShaderSection } from "@/components/sections/ShaderSection";
+import { SkillsSection } from "@/components/sections/SkillsSection";
+import { ContactSection } from "@/components/sections/ContactSection";
 
 export default function Home() {
   return (
-    <Column fillWidth center padding="l" style={{ minHeight: "100vh" }}>
-      <Column maxWidth="s" horizontal="center" gap="l" align="center">
-        <Badge
-          textVariant="code-default-s"
-          border="neutral-alpha-medium"
-          onBackground="neutral-medium"
-          vertical="center"
-          gap="16"
-        >
-          <Logo dark icon="/trademarks/wordmark-dark.svg" href="https://once-ui.com" size="xs" />
-          <Logo light icon="/trademarks/wordmark-light.svg" href="https://once-ui.com" size="xs" />
-          <Line vert background="neutral-alpha-strong" />
-          <Text marginX="4">
-            <LetterFx trigger="instant">An ecosystem, not a UI kit</LetterFx>
-          </Text>
-        </Badge>
-        <Heading variant="display-strong-xl" marginTop="24">
-          Presence that doesn't beg for attention
-        </Heading>
-        <Text
-          variant="heading-default-xl"
-          onBackground="neutral-weak"
-          wrap="balance"
-          marginBottom="16"
-        >
-          Build with clarity, speed, and quiet confidence
-        </Text>
-        <Button
-          id="docs"
-          href="https://docs.once-ui.com/once-ui/quick-start"
-          data-border="rounded"
-          weight="default"
-          prefixIcon="copy"
-          arrowIcon
-        >
-          Explore docs
-        </Button>
-      </Column>
-    </Column>
+    <main className="min-h-screen">
+      <Navigation />
+      <div className="pt-16 md:pt-20">
+        <div className="container mx-auto px-4 md:px-6 pb-8 md:pb-12">
+          <SplineHero />
+        </div>
+        <AboutSection />
+        <div className="container mx-auto px-4 md:px-6 pt-0 pb-8 md:pb-12">
+          <ShaderSection />
+        </div>
+        <ExperienceSection />
+        <ProjectsSection />
+        <SkillsSection />
+        <ContactSection />
+      </div>
+    </main>
   );
 }
