@@ -9,6 +9,7 @@ export interface Project {
   title: string;
   tech: string;
   description: string[];
+  link?: string;
 }
 
 export interface SkillCategory {
@@ -22,6 +23,20 @@ export interface SocialLink {
   label: string;
 }
 
+export interface Education {
+  school: string;
+  degree: string;
+  period: string;
+  location: string;
+}
+
+export interface Leadership {
+  role: string;
+  organization: string;
+  period: string;
+  description: string;
+}
+
 export interface PortfolioData {
   profile: {
     name: string;
@@ -29,6 +44,8 @@ export interface PortfolioData {
     description: string;
   };
   about: string[];
+  education: Education[];
+  leadership: Leadership[];
   experience: Experience[];
   projects: Project[];
   skills: SkillCategory[];
@@ -42,108 +59,222 @@ export interface PortfolioData {
 export const portfolioData: PortfolioData = {
   profile: {
     name: "Neelansh Khare",
-    title: "Software Engineer & Machine Learning Enthusiast",
+    title: "Software Engineer & Backend Specialist",
     description:
-      "UC Irvine CS graduate with experience in software engineering, AI/ML research, and full-stack development. Passionate about creating innovative solutions using cutting-edge technologies.",
+      "Software Engineer specializing in backend systems, distributed infrastructure, and product engineering. Experienced in building production-grade automation systems, scalable APIs, and data pipelines.",
   },
   about: [
-    "I'm a Computer Science graduate from UC Irvine with a passion for software engineering, machine learning, and data science. My journey in tech has equipped me with a diverse skill set spanning from backend development to AI research.",
-    "I currently work as a Software Engineer at UC Irvine, where I develop automation systems and improve software infrastructure. I'm also an Undergraduate Researcher at the He Lab, focusing on deep learning models for nano-particle motion prediction.",
-    "Beyond my technical skills, I'm an active leader in the community. I've served as the President for the Indian Subcontinental Club, a Software Developer for ICSSC, and I'm involved with the Google Developer Student Club.",
-    "I'm particularly interested in the intersection of AI/ML and practical applications, from automated trading systems to computer vision. I enjoy tackling complex problems with innovative solutions that leverage cutting-edge technologies.",
+    "I am a Software Engineer at Polaris Wireless, specializing in backend systems and distributed infrastructure. I previously worked as a Software Engineer Co-op at the University of California, Irvine, where I developed automation systems and full-stack applications.",
+    "My technical expertise spans Python, Java, and C++, with a strong focus on building scalable APIs, data pipelines, and orchestration tooling. I have experience with technologies like Hadoop, Spark, Kafka, and Kubernetes in enterprise environments.",
+    "I am also passionate about AI and Machine Learning. As an Undergraduate Researcher at the He Lab, I architected deep learning pipelines for scientific applications. I enjoy working on projects that bridge the gap between complex infrastructure and intelligent systems.",
+    "Beyond coding, I am an active community leader, having served as President of the Indian Subcontinental Club and contributed to organizations like ICSSC and Legacy Robotics.",
+  ],
+  education: [
+    {
+      school: "University of California, Irvine",
+      degree: "B.S. Computer Science",
+      period: "2021 - 2025",
+      location: "Irvine, CA",
+    },
+  ],
+  leadership: [
+    {
+      role: "President",
+      organization: "Indian Subcontinental Club",
+      period: "2023 - 2024",
+      description: "Led the largest cultural organization on campus, managing a board of 30 members and organizing events for 500+ attendees.",
+    },
+    {
+      role: "Software Developer",
+      organization: "ICSSC",
+      period: "2022 - 2024",
+      description: "Contributed to the development of student-focused applications and tools.",
+    },
+    {
+      role: "Software Developer",
+      organization: "Legacy Robotics",
+      period: "2021 - 2023",
+      description: "Computer Vision developer on a competitive robotics team",
+    },
+    {
+      role: "Data & Analytics",
+      organization: "Sigma Pi",
+      period: "2023 - 2025",
+      description: "Analyzed fraternity data to optimize recruitment, event planning, and finances.",
+    },
+    {
+      role: "Volunteer",
+      organization: "SF Civic Tech",
+      period: "2025 - Present",
+      description: "Helped with the SF Safehome project website and backend.",
+    }
   ],
   experience: [
     {
       title: "Software Engineer",
-      company: "University of California, Irvine",
-      period: "June 2022 - Present",
+      company: "Polaris Wireless",
+      period: "Sept 2025 - Present",
       description: [
-        "Developed and deployed a Java automation system for effort reporting, reducing processing time by 90% and eliminating manual data entry errors.",
-        "Architected a documentation generator using Java and RESTful APIs, helping with quicker onboarding.",
-        "Implemented and tested complex backend features for a financial aid portal using Java and JUnit, resulting in new features including faster data loading time by 30%.",
-        "Resolved frontend visual bugs and created a frontend testing framework using React and Playwright, fixing UI inconsistencies.",
-        "Designed and implemented a database anonymization application using Java and SQL, to ensure FERPA compliance.",
-        "Engineered JavaScript data processing scripts that created SQL queries automatically from an Excel sheet, saving hours for developers weekly.",
+        "Built Python/Bash CLI orchestration tooling to deploy Hadoop, HBase, Spark, ZK, and ClickHouse across multi-VM RHEL clusters, reducing setup time by 97% from 3 days to 2 hours.",
+        "Designed topology-aware configuration generation and automated bootstrap/validation pipelines enabling reproducible cluster bring-up across client environments.",
+        "Implemented fault-tolerant, role-aware health checks and SSH-based orchestration to detect and recover from partial cluster failures.",
+      ],
+    },
+    {
+      title: "Founding Engineer",
+      company: "Neuracities",
+      period: "Aug 2025 - Nov 2025",
+      description: [
+        "Took ownership of infrastructure in a 2-person engineering team, driving core product development.",
+        "Constructed Python-based scraping pipeline, collecting data from 100+ government sources daily.",
+        "Integrated data into an LLM-powered RAG system, with ranking logic to surface high-relevance RFPs.",
+        "Developed FastAPI + React fullstack dashboard, enabling real-time visualization of municipal datasets.",
+      ],
+    },
+    {
+      title: "Software Engineer Co-op",
+      company: "University of California, Irvine",
+      period: "Jun 2022 - Jun 2025",
+      description: [
+        "Implemented Java/Gradle automation system; Reduced manual reporting workload by 90% across 4 teams.",
+        "Designed RESTful API endpoints in Java, enabling fullstack integration, supporting 500+ weekly users.",
+        "Built a web scraping pipeline that centralized 10000+ documents, cutting developer onboarding time by 30%.",
+        "Integrated React/Playwright test framework in CI/CD, lowering regression defects by 15%.",
+        "Created SQL/Java data anonymization tool for FERPA compliance, securing 30,000+ student records.",
       ],
     },
     {
       title: "Undergraduate Researcher",
-      company: "He Lab, University of California, Irvine",
-      period: "January 2024 - Present",
+      company: "He Lab, UC Irvine",
+      period: "Jan 2024 - Dec 2024",
       description: [
-        "Developed a deep-learning model using computer vision to predict nano-particle motion, enabling advancements in material science research (Pending paper publication).",
-        "Engineered and optimized a Python based CNN for electron microscopy analysis, achieving 95% accuracy in particle identification as well as developed my own scripts for data inference and preprocessing.",
-        "Created a synthetic data generation pipeline that can produce 10000+ realistic microscopy images, enabling robust model training and validation.",
+        "Architected an end-to-end deep learning pipeline for nanoparticle motion prediction, including dataset preparation and release.",
+        "Trained CNN model for microscopic image analysis, achieving 91% accuracy (a 4% increase) on 9000+ samples.",
+        "Developed synthetic data generation pipeline to create 10,000+ labeled images, enabling robust training.",
       ],
     },
   ],
   projects: [
     {
-      title: "AI Based Stock Trading",
+      title: "Auto Budget",
+      tech: "TypeScript, React, Node.js, LLMs",
+      description: [
+        "Automated personal finance tool that syncs transactions and categorizes them using LLMs.",
+        "Implemented secure integration with banking APIs and Google Sheets for real-time tracking.",
+        "Built a responsive dashboard to visualize spending habits and budget goals.",
+      ],
+      link: "https://github.com/Neelansh-Khare/auto-budget",
+    },
+    {
+      title: "JobSearchAI",
+      tech: "Python, AI Agents",
+      description: [
+        "AI-powered job search assistant that automates job discovery and application processes.",
+        "Utilizes advanced scraping and filtering to find relevant job postings based on user criteria.",
+      ],
+      link: "https://github.com/Neelansh-Khare/JobSearchAI",
+    },
+    {
+      title: "Academia Hub",
+      tech: "React, Supabase, AI Services",
+      description: [
+        "Comprehensive academic networking platform connecting students, researchers, and institutions.",
+        "Features include project collaboration tools, profile management, and AI-driven match recommendations.",
+      ],
+      link: "https://github.com/Neelansh-Khare/academia-hub",
+    },
+    {
+      title: "Trading Script (Bard & Schwab)",
       tech: "Python, REST APIs",
       description: [
         "Engineered an automated trading system utilizing Bard AI for market analysis and Schwab APIs for execution.",
-        "Implemented risk management algorithms with stop-loss mechanisms.",
-        "Developed real-time market monitoring system processing data from an exchange with sub-second latency.",
+        "Implemented risk management algorithms with stop-loss mechanisms and real-time market monitoring.",
       ],
-    },
-    {
-      title: "Object Recognition Script",
-      tech: "Python, Matplotlib, OpenCV",
-      description: [
-        "Developed a real-time object detection system with 97% accuracy for household items using custom-trained CNN models.",
-        "Built a user-friendly GUI for real-time visualization and result logging using Matplotlib.",
-      ],
-    },
-    {
-      title: "Python Based Discord Bots",
-      tech: "Python, REST APIs",
-      description: [
-        "Implemented competitive gaming features with PostgreSQL leaderboard system, driving 70% increase in user engagement.",
-        "Created automated moderation tools using natural language processing to maintain community guidelines.",
-        "Designed asynchronous event handling system for optimal performance during high-traffic periods.",
-      ],
+      link: "https://github.com/Neelansh-Khare/tradingScriptBardSchwab",
     },
     {
       title: "Compiler and Interpreter",
       tech: "Python",
       description: [
-        "Built a fully-functional compiler/interpreter from scratch in Python that processed the low level language Tiny.",
-        "Implemented a lexer, parser, and the ability to add user defined functions and variables.",
+        "Created full compiler/interpreter for Tiny language including lexer, parser, and semantic analyzer.",
+        "Implemented raw source processing to executable code with error handling.",
       ],
+      link: "https://github.com/Neelansh-Khare",
+    },
+    {
+      title: "Search Engine",
+      tech: "Python",
+      description: [
+        "Implemented indexing, ranking, and query processing for large text corpora with sub-second response.",
+        "Optimized for high performance retrieval on custom datasets.",
+      ],
+      link: "https://github.com/Neelansh-Khare",
+    },
+    {
+      title: "Fablix",
+      tech: "Java, Servlets, MySQL, AWS",
+      description: [
+        "Full-stack e-commerce web application for browsing and purchasing movies.",
+        "Features robust search functionality, user authentication, and shopping cart management.",
+      ],
+      link: "https://github.com/Neelansh-Khare/Fablix",
     },
   ],
   skills: [
     {
       name: "Languages",
-      skills: ["Python", "Java", "JavaScript", "C++", "C", "R", "Go"],
+      skills: ["Python", "Java", "C++", "SQL", "JavaScript", "Scala", "Go", "TypeScript", "Shell", "C"],
     },
     {
-      name: "Frameworks & Technologies",
+      name: "Frameworks & Systems",
       skills: [
+        "FastAPI",
+        "Node.js",
+        "Spring",
         "React",
-        "AWS",
+        "Spark",
+        "Hadoop",
+        "HBase",
+        "Kafka",
+        "PyTorch",
         "TensorFlow",
-        "JUnit",
-        "RESTful APIs",
-        "OpenCV",
-        "Matplotlib",
+        "Docker",
+        "Kubernetes",
       ],
     },
     {
-      name: "Developer Tools",
-      skills: ["SQL", "Git", "Docker", "Playwright", "PostgreSQL"],
+      name: "Infra & Tools",
+      skills: ["Git", "GitHub Actions", "Jenkins", "AWS", "GCP", "Azure", "PostgreSQL", "MySQL", "MongoDB", "Linux"],
     },
     {
       name: "Areas of Expertise",
       skills: [
+        "Backend Systems",
+        "Distributed Infrastructure",
         "Machine Learning",
-        "Computer Vision",
-        "Software Engineering",
-        "Full-Stack Development",
-        "Data Processing",
+        "Data Pipelines",
+        "API Design",
         "Automation",
-        "Testing & QA",
+      ],
+    },
+    {
+      name: "Certifications",
+      skills: [
+        "AWS Certified Cloud Practitioner",
+        "CodePath Technical Interview Prep Program (TIP)",
+      ],
+    },
+    {
+      name: "Interests",
+      skills: [
+        "HackNation Top 10",
+        "MLH Hack Week x3",
+        "Google Developer Student Club",
+        "ACM",
+        "Letta Open Source Contributor",
+        "MLCollective",
+        "Nvidia Developer Program",
+        "Guitarist",
       ],
     },
   ],
@@ -166,7 +297,11 @@ export const portfolioData: PortfolioData = {
         url: "https://neelanshkhare.notion.site",
         label: "neelanshkhare.notion.site",
       },
+      {
+        name: "X",
+        url: "https://x.com/neelansh_khare",
+        label: "x.com/neelansh_khare",
+      },
     ],
   },
 };
-

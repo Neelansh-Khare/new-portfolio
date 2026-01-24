@@ -104,3 +104,13 @@
   animation: spotlight 2s ease 0.75s 1 forwards;
 }
 
+/* Hide Next.js Dev Indicator */
+[data-nextjs-toast] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+[data-nextjs-toast-wrapper] {
+    display: none !important;
+}
+

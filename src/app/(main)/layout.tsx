@@ -6,8 +6,9 @@ import '@/app/globals.css';
 import classNames from "classnames";
 
 import { baseURL, meta, fonts, effects, style, dataStyle } from "@/resources/once-ui.config";
-import { Meta, Schema,  Column, Flex, opacity, SpacingToken, Background} from "@once-ui-system/core";
+import { Meta, Schema, Column, Flex, opacity, SpacingToken, Background } from "@once-ui-system/core";
 import { Providers } from '@/components/Providers';
+import LiquidGradient from '@/components/ui/LiquidGradient';
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -34,6 +35,7 @@ export default function RootLayout({
       lang="en"
       fillWidth
       className={classNames(
+        "dark",
         fonts.heading.variable,
         fonts.body.variable,
         fonts.label.variable,
@@ -58,18 +60,18 @@ export default function RootLayout({
                   
                   // Set defaults from config
                   const config = ${JSON.stringify({
-                    theme: style.theme,
-                    brand: style.brand,
-                    accent: style.accent,
-                    neutral: style.neutral,
-                    solid: style.solid,
-                    'solid-style': style.solidStyle,
-                    border: style.border,
-                    surface: style.surface,
-                    transition: style.transition,
-                    scaling: style.scaling,
-                    'viz-style': dataStyle.variant,
-                  })};
+              theme: style.theme,
+              brand: style.brand,
+              accent: style.accent,
+              neutral: style.neutral,
+              solid: style.solid,
+              'solid-style': style.solidStyle,
+              border: style.border,
+              surface: style.surface,
+              transition: style.transition,
+              scaling: style.scaling,
+              'viz-style': dataStyle.variant,
+            })};
                   
                   // Apply default values
                   Object.entries(config).forEach(([key, value]) => {
@@ -77,18 +79,10 @@ export default function RootLayout({
                   });
                   
                   // Resolve theme
-                  const resolveTheme = (themeValue) => {
-                    if (!themeValue || themeValue === 'system') {
-                      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-                    }
-                    return themeValue;
-                  };
+                  const resolveTheme = () => 'dark';
                   
                   // Apply saved theme or use config default
-                  const savedTheme = localStorage.getItem('data-theme');
-                  // Only override with system preference if explicitly set to 'system'
-                  const resolvedTheme = savedTheme ? resolveTheme(savedTheme) : config.theme === 'system' ? resolveTheme(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : config.theme;
-                  root.setAttribute('data-theme', resolvedTheme);
+                  root.setAttribute('data-theme', 'dark');
                   
                   // Apply any saved style overrides
                   const styleKeys = Object.keys(config);
@@ -108,7 +102,8 @@ export default function RootLayout({
         />
       </head>
       <Providers>
-        <Column as="body" background="page" fillWidth margin="0" padding="0">
+        <Column as="body" background="transparent" fillWidth margin="0" padding="0">
+          <LiquidGradient />
           <Background
             position="absolute"
             mask={{
