@@ -4,7 +4,6 @@ const nextConfig = {
     compiler: "modern",
     silenceDeprecations: ["legacy-js-api"],
   },
-  devIndicators: false,
   output: 'export',
   images: {
     unoptimized: true,
