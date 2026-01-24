@@ -87,9 +87,11 @@ export function ShaderAnimation() {
       const handleResize = () => {
         const width = container.clientWidth
         const height = container.clientHeight
-        renderer?.setSize(width, height)
-        uniforms.resolution.value.x = renderer.domElement.width
-        uniforms.resolution.value.y = renderer.domElement.height
+        if (renderer) {
+          renderer.setSize(width, height)
+          uniforms.resolution.value.x = renderer.domElement.width
+          uniforms.resolution.value.y = renderer.domElement.height
+        }
       }
 
       handleResize()
@@ -139,7 +141,7 @@ export function ShaderAnimation() {
       console.error("Failed to initialize WebGL:", error)
       // Fallback to static gradient
       container.style.background = "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
-      return () => {}
+      return () => { }
     }
   }, [])
 
