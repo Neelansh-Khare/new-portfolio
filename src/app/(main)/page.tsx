@@ -22,7 +22,7 @@ import { ContactSection } from "@/components/sections/ContactSection";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen relative z-10">
       <Navigation />
       <div className="pt-16 md:pt-20">
         <div className="container mx-auto px-4 md:px-6 pb-8 md:pb-12">

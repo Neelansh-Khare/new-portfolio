@@ -293,9 +293,9 @@ export const portfolioData: PortfolioData = {
         label: "github.com/Neelansh-Khare",
       },
       {
-        name: "Portfolio",
-        url: "https://neelanshkhare.notion.site",
-        label: "neelanshkhare.notion.site",
+        name: "Blog",
+        url: "https://neelanshkhare.github.io/new-portfolio/blog",
+        label: "neelanshkhare.github.io/new-portfolio/blog",
       },
       {
         name: "X",

@@ -114,3 +114,7 @@
     display: none !important;
 }
 
+.animate-spotlight {
+  pointer-events: none !important;
+}
+
