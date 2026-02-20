@@ -115,7 +115,7 @@ export const portfolioData: PortfolioData = {
       company: "Polaris Wireless",
       period: "Sept 2025 - Present",
       description: [
-        "Built Python/Bash CLI orchestration tooling to deploy Hadoop, HBase, Spark, ZK, and ClickHouse across multi-VM RHEL clusters, reducing setup time by 97% from 3 days to 2 hours.",
+        "Built Python/Bash CLI orchestration tooling to deploy Hadoop, HBase, Spark, ZK, and ClickHouse across multi-VM RHEL clusters, reducing setup time by 97% from 7 days to 4 hours.",
         "Designed topology-aware configuration generation and automated bootstrap/validation pipelines enabling reproducible cluster bring-up across client environments.",
         "Implemented fault-tolerant, role-aware health checks and SSH-based orchestration to detect and recover from partial cluster failures.",
       ],
