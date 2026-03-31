@@ -22,8 +22,8 @@ export const blogData: BlogPost[] = [
     title: "Foundations & The RAG Baseline",
     date: "March 22, 2026",
     content: [
-      "I've officially kicked off two parallel research tracks this week, and the initial scaffolding phase has already been eye-opening. There's a unique kind of satisfaction in building a RAG pipeline from scratch—from the raw JSONL loading to the FAISS indexing.",
-      "The biggest thing I noticed while setting up the 'rag-saturation-paper' baseline is how quickly evaluation metrics like Exact Match and token-level F1 become your best friends. Without a rigorous feedback loop, you're just guessing. I spent a lot of time this week making sure my 'sanity checks' were actually sane before I start the massive scale-sweeps next week.",
+      "I've officially kicked off two parallel research tracks this week, and the initial scaffolding phase has already been so informative.",
+      "The biggest thing I noticed while setting up the baseline for my independant research paper is how quickly evaluation metrics like Exact Match and token-level F1 become your best friends. Without a rigorous feedback loop, you're just guessing. I spent a lot of time this week making sure my sanity checks were actually sane before I start the massive scale-sweeps next week.",
       "On the reproduction side, I'm deep-diving into the mechanics of position-controlled experiments. By breaking down the context into 'buckets' (beginning, early-middle, etc.), I'm preparing to test exactly where models start to lose the plot. It’s making me much more conscious of how I structure prompts in my other projects.",
       "It’s a bit of a juggling act, but I’m already seeing where these paths might cross. Starting with clean, reproducible baselines is slower, but it's the only way to build something that actually stands up to scrutiny.",
     ],
