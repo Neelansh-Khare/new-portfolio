@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  basePath: '/new-portfolio',
   sassOptions: {
     compiler: "modern",
     silenceDeprecations: ["legacy-js-api"],
@@ -8,8 +9,6 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // Optional: Change the output directory `out` -> `dist`
-  // distDir: 'dist',
 };
 
 export default nextConfig;

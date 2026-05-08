@@ -3,6 +3,7 @@ import { SplineScene } from "@/components/ui/splite"
 import { portfolioData } from "@/data/portfolio"
 import { Spotlight } from "@/components/ui/spotlight"
 import Image from "next/image"
+import profilePic from "../../../public/images/profile.jpeg"
 
 export function SplineHero() {
   return (
@@ -20,7 +21,7 @@ export function SplineHero() {
               </h1>
               <div className="relative w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40">
                 <Image 
-                  src="/images/profile.jpeg"
+                  src={profilePic}
                   alt={portfolioData.profile.name}
                   fill
                   className="rounded-full border-4 border-neutral-800 shadow-2xl object-cover"
