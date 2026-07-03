@@ -112,8 +112,15 @@ export const portfolioData: PortfolioData = {
   experience: [
     {
       title: "Software Engineer",
+      company: "Campfire (YC S23)",
+      period: "June 2026 - Present",
+      description: [
+      ],
+    },
+    {
+      title: "Software Engineer",
       company: "Polaris Wireless",
-      period: "Sept 2025 - Present",
+      period: "Sept 2025 - June 2026",
       description: [
         "Built Python/Bash CLI orchestration tooling to deploy Hadoop, HBase, Spark, ZK, and ClickHouse across multi-VM RHEL clusters, reducing setup time by 97% from 7 days to 4 hours.",
         "Designed topology-aware configuration generation and automated bootstrap/validation pipelines enabling reproducible cluster bring-up across client environments.",
