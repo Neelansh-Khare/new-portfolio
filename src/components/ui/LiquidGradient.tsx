@@ -417,10 +417,21 @@ export default function LiquidGradient() {
             }
         }
 
-        const app = new App(containerRef.current);
+        // Bail out silently if WebGL is unavailable (headless browsers,
+        // some GPU denylists, or users who disabled WebGL). Without this
+        // guard, `new App(...)` throws and crashes the entire React tree.
+        let app: App | null = null;
+        try {
+            app = new App(containerRef.current);
+        } catch (err) {
+            if (process.env.NODE_ENV !== "production") {
+                console.warn("LiquidGradient: skipping background —", err);
+            }
+            return;
+        }
 
         return () => {
-            app.dispose();
+            app?.dispose();
         };
     }, []);
 
