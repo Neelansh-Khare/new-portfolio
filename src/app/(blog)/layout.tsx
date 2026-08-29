@@ -1,11 +1,12 @@
-import React from 'react';
-import { fonts } from '@/resources/once-ui.config';
-import classNames from 'classnames';
-import '@/app/globals.css';
+import classNames from "classnames";
+import type React from "react";
+import "@/app/globals.css";
+import { fonts } from "@/resources/once-ui.config";
 
 export const metadata = {
-  title: 'Blog | Neelansh Khare',
-  description: 'Personal blog of Neelansh Khare',
+  title: "Blog | Neelansh Khare",
+  description:
+    "Personal blog of Neelansh Khare — weekly updates on research, engineering, and side projects.",
 };
 
 export default function BlogLayout({
@@ -17,21 +18,22 @@ export default function BlogLayout({
     <html
       lang="en"
       className={classNames(
-        'dark',
+        "dark",
         fonts.heading.variable,
         fonts.body.variable,
         fonts.label.variable,
-        fonts.code.variable
+        fonts.code.variable,
       )}
+      data-theme="dark"
     >
       <body
         style={{
-          backgroundColor: '#000000',
-          color: '#ffffff',
-          minHeight: '100vh',
+          backgroundColor: "#000000",
+          color: "#ffffff",
+          minHeight: "100vh",
           margin: 0,
           padding: 0,
-          fontFamily: 'var(--font-body)',
+          fontFamily: "var(--font-body)",
         }}
       >
         {children}
