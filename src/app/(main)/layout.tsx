@@ -73,20 +73,18 @@ export default function RootLayout({
               'viz-style': dataStyle.variant,
             })};
                   
-                  // Apply default values
+                  // Apply defaults from once-ui.config
                   Object.entries(config).forEach(([key, value]) => {
                     root.setAttribute('data-' + key, value);
                   });
-                  
-                  // Resolve theme
-                  const resolveTheme = () => 'dark';
-                  
-                  // Apply saved theme or use config default
+
+                  // This site is dark-only; ignore any saved theme override
+                  // but honor other style tokens (brand, accent, etc.) if the
+                  // user has customized them in localStorage.
                   root.setAttribute('data-theme', 'dark');
-                  
-                  // Apply any saved style overrides
-                  const styleKeys = Object.keys(config);
-                  styleKeys.forEach(key => {
+
+                  Object.keys(config).forEach(key => {
+                    if (key === 'theme') return;
                     const value = localStorage.getItem('data-' + key);
                     if (value) {
                       root.setAttribute('data-' + key, value);

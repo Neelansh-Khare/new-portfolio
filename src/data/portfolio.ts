@@ -301,8 +301,8 @@ export const portfolioData: PortfolioData = {
       },
       {
         name: "Blog",
-        url: "https://neelanshkhare.github.io/new-portfolio/blog",
-        label: "neelanshkhare.github.io/new-portfolio/blog",
+        url: "/blog",
+        label: "Read the blog →",
       },
       {
         name: "X",

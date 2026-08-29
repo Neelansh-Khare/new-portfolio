@@ -1,142 +1,135 @@
 # Neelansh Khare - Portfolio Website
 
-A modern, interactive portfolio website built with Next.js, React, TypeScript, and Tailwind CSS. Features immersive 3D animations, shader effects, and a clean, responsive design.
+A personal portfolio and blog built with Next.js 14, TypeScript, Tailwind CSS, and Three.js. Statically exported and deployed to GitHub Pages.
 
 ![Portfolio](public/images/og/home.jpg)
 
 ## Features
 
-### Interactive 3D Elements
-- **Spline 3D Hero Card**: Lazy-loaded 3D scene with spotlight effect showcasing profile information
-- **Three.js Shader Animation**: Full-bleed animated shader background with overlay text
+### Portfolio (`/`)
+- **Spline 3D hero card** with spotlight effect (lazy-loaded, client-only)
+- **Three.js shader animation** section
+- Sections: About, Experience, Education, Projects, Skills, Contact
+- Bottom-bar "tubelight" navigation with scroll-spy on desktop and mobile
+- Direct link into the blog from the navigation
 
-### Portfolio Sections
-- **About**: Personal introduction and background
-- **Experience**: Professional work history with detailed descriptions
-- **Projects**: Showcase of technical projects with technologies used
-- **Skills**: Organized skill categories (Languages, Frameworks, Tools, Expertise)
-- **Contact**: Contact information and social links
+### Blog (`/blog`)
+- Post index at `/blog` (summaries with "Read more →")
+- Per-post pages at `/blog/[slug]` with `generateStaticParams` and per-post `generateMetadata`
+- ISO dates rendered via `<time dateTime="...">` and formatted at render
+- Posts are automatically sorted newest-first at render time
+- Auto-generated `sitemap.xml` and `rss.xml`
 
-### Technical Features
-- **Responsive Design**: Mobile-first approach with breakpoints for all screen sizes
-- **Accessibility**: Semantic HTML, proper heading hierarchy, keyboard navigation, ARIA labels
-- **Performance**: Lazy loading, optimized animations, proper resource cleanup
-- **Reduced Motion Support**: Respects user preferences for reduced motion
-- **Type Safety**: Full TypeScript implementation with typed data structures
-- **Modern Stack**: Next.js 15, React 19, Tailwind CSS, shadcn/ui components
+### Technical
+- **Responsive** mobile-first design
+- **Accessibility**: semantic HTML, machine-readable dates, `aria-*` where relevant
+- **Performance**: `next/dynamic` for heavy 3D content, `prefers-reduced-motion` respected
+- **Type-safe**: full TypeScript with typed portfolio and blog data
+- **Static export** compatible with GitHub Pages (`output: 'export'`, `basePath: '/new-portfolio'`)
 
 ## Tech Stack
 
-- **Framework**: Next.js 15 (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **UI Components**: shadcn/ui
-- **3D Graphics**: Spline (@splinetool/react-spline), Three.js
-- **Icons**: Lucide React
-- **Design System**: Once UI Core (for base styling)
+- **Framework**: Next.js 14.2 (App Router, static export)
+- **Language**: TypeScript 5.8
+- **UI**: React 18, Tailwind CSS 3, shadcn/ui-style primitives, Once UI Core
+- **3D**: `@splinetool/react-spline`, `three`
+- **Icons**: `lucide-react`, `react-icons`
 
 ## Getting Started
 
 ### Prerequisites
+- Node.js 18+ (CI uses Node 20)
+- npm
 
-- Node.js 18+ and npm (or yarn/pnpm)
-- Git
+### Install & run
 
-### Installation
-
-1. Clone the repository:
 ```bash
-git clone <your-repo-url>
-cd new-portfolio
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Run the development server:
-```bash
+npm ci
 npm run dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the portfolio.
+Open <http://localhost:3000/new-portfolio> in your browser.
 
-### Available Scripts
+> Note: because `basePath` is set to `/new-portfolio` in `next.config.mjs`, the app is served under that prefix locally too. Visiting `/` will 404 in dev; visit `/new-portfolio` instead.
 
-- `npm run dev` - Start development server with Turbopack
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
-- `npm run biome-write` - Format code with Biome
+### Available scripts
 
-## Project Structure
+- `npm run dev` — start dev server
+- `npm run build` — build for production (produces static `out/`)
+- `npm run start` — serve the production build
+- `npm run lint` — run ESLint
+- `npm run typecheck` — run `tsc --noEmit`
+- `npm run biome-write` — format with Biome
+
+## Project structure
 
 ```
 src/
 ├── app/
-│   └── (main)/
-│       ├── layout.tsx      # Root layout with providers
-│       └── page.tsx        # Main portfolio page
+│   ├── (main)/                # Portfolio route group (own <html>/<body>)
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│   ├── (blog)/                # Blog route group (own <html>/<body>)
+│   │   ├── layout.tsx
+│   │   └── blog/
+│   │       ├── page.tsx       # Blog index
+│   │       └── [slug]/
+│   │           └── page.tsx   # Individual post
+│   ├── api/og/                # OG image proxy/fetch route handlers
+│   ├── rss.xml/route.ts       # Static RSS feed
+│   ├── sitemap.ts             # Static sitemap
+│   ├── globals.css
+│   └── favicon.ico
 ├── components/
-│   ├── ui/                 # shadcn/ui components
-│   │   ├── card.tsx
-│   │   ├── spotlight.tsx
-│   │   ├── splite.tsx      # Spline 3D wrapper
-│   │   └── shader-animation.tsx
-│   ├── sections/           # Portfolio sections
-│   │   ├── SplineHero.tsx
-│   │   ├── AboutSection.tsx
-│   │   ├── ExperienceSection.tsx
-│   │   ├── ProjectsSection.tsx
-│   │   ├── ShaderSection.tsx
-│   │   ├── SkillsSection.tsx
-│   │   └── ContactSection.tsx
-│   └── Navigation.tsx
+│   ├── Navigation.tsx
+│   ├── Providers.tsx
+│   ├── sections/              # Portfolio sections
+│   └── ui/                    # Reusable primitives
 ├── data/
-│   └── portfolio.ts        # Typed portfolio data
-└── lib/
-    └── utils.ts            # Utility functions
+│   ├── portfolio.ts           # Typed portfolio content
+│   └── blog.ts                # Typed blog posts (ISO dates)
+├── lib/
+│   ├── blog.ts                # Sorting/lookup helpers
+│   └── utils.ts
+├── resources/                 # Once UI config, fonts, icons
+└── types/
 ```
 
 ## Customization
 
-### Update Portfolio Content
+### Portfolio content
+Edit `src/data/portfolio.ts`.
 
-Edit `src/data/portfolio.ts` to update:
-- Profile information
-- Experience entries
-- Projects
-- Skills
-- Contact information
+### Blog content
+See [`docs/blog-updates.md`](docs/blog-updates.md).
 
-### Replace Spline Scene
+### Spline scene
+Update the URL in `src/components/sections/SplineHero.tsx`:
 
-Update the Spline scene URL in `src/components/sections/SplineHero.tsx`:
 ```tsx
-<SplineScene 
+<SplineScene
   scene="YOUR_SPLINE_SCENE_URL"
   className="w-full h-full"
 />
 ```
 
 ### Styling
-
 - Global styles: `src/app/globals.css`
 - Tailwind config: `tailwind.config.ts`
-- Component styles: Use Tailwind classes directly in components
+- Once UI config: `src/resources/once-ui.config.js`
 
-## Deploy to Vercel
+## Deployment
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fonce-ui-system%2Fnextjs-starter&project-name=nextjs-starter&repository-name=nextjs-starter&redirect-url=https%3A%2F%2Fgithub.com%2Fonce-ui-system%2Fnextjs-starter&demo-title=Next.js%20Starter&demo-description=Showcase%20your%20designers%20or%20developer%20portfolio&demo-url=https%3A%2F%2Fdemo.nextjs-starter.com&demo-image=%2F%2Fraw.githubusercontent.com%2Fonce-ui-system%2Fnextjs-starter%2Fmain%2Fpublic%2Fimages%2Fog%2Fhome.jpg)
+This repository is configured to deploy to **GitHub Pages** via `.github/workflows/deploy.yml`. The workflow runs on every push to `main`:
 
-The easiest way to deploy this portfolio is using [Vercel](https://vercel.com):
+1. Installs dependencies (`npm ci`)
+2. Runs `npm run lint` and `npm run typecheck`
+3. Runs `next build` (which produces `out/` because `output: 'export'`)
+4. Uploads `out/` as the Pages artifact
+5. Deploys to Pages
 
-1. Push your code to GitHub
-2. Import your repository in Vercel
-3. Vercel will automatically detect Next.js and configure the build settings
-4. Your portfolio will be live!
+Because the site is served from `https://<user>.github.io/new-portfolio/`, `next.config.mjs` sets `basePath: '/new-portfolio'` and `images.unoptimized: true`. All internal navigation must go through `next/link` or `next/image` so the base path is prefixed automatically.
 
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+MIT — see [`LICENSE`](LICENSE).
