@@ -41,7 +41,7 @@ export function EducationSection() {
                             <h2 className="text-3xl font-bold text-white">Leadership</h2>
                         </div>
                         <p className="text-gray-400">
-                            Community leadership and mentorship roles where I've made an impact.
+                            Community leadership and mentorship roles where I&apos;ve made an impact.
                         </p>
                     </div>
 
