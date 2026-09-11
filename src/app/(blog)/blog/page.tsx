@@ -11,7 +11,7 @@ export default function BlogPage() {
   const posts = getAllPosts();
 
   return (
-    <div className="max-w-3xl mx-auto px-6 py-12">
+    <div className="max-w-3xl mx-auto px-6 pb-12">
       <header className="mb-12 flex justify-between items-center">
         <h1 className="text-4xl font-bold font-heading">Neelansh&apos;s Blog</h1>
         <Link

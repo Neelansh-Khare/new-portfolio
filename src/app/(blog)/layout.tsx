@@ -2,6 +2,7 @@ import classNames from "classnames";
 import type React from "react";
 import "@/app/globals.css";
 import { fonts } from "@/resources/once-ui.config";
+import { Navigation } from "@/components/Navigation";
 
 export const metadata = {
   title: "Blog | Neelansh Khare",
@@ -36,7 +37,10 @@ export default function BlogLayout({
           fontFamily: "var(--font-body)",
         }}
       >
-        {children}
+        <Navigation />
+        {/* Top padding clears the sm+ top nav; bottom padding clears the
+            mobile bottom nav so the last line of content isn't hidden. */}
+        <div className="pt-16 sm:pt-24 pb-24 sm:pb-12">{children}</div>
       </body>
     </html>
   );

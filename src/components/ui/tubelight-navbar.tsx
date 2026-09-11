@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface NavItem {
@@ -25,97 +25,128 @@ interface NavBarProps {
   className?: string;
 }
 
+/**
+ * Route treated as the "home" page containing the hash-linked sections.
+ * When we're on any other route (e.g. `/blog`) the hash items link back to
+ * this route (`/#about`) instead of the current one (`/blog#about`).
+ */
+const HOME_ROUTE = "/";
+
 export function NavBar({ items, className }: NavBarProps) {
   const pathname = usePathname();
-  const [activeTab, setActiveTab] = useState<string>(() => {
-    const firstHash = items.find((i) => !i.external);
-    return firstHash ? firstHash.name : items[0].name;
-  });
-  const [_isMobile, setIsMobile] = useState(false);
+  const isHome = pathname === HOME_ROUTE;
 
+  const hashItems = useMemo(() => items.filter((i) => !i.external), [items]);
+  const [activeTab, setActiveTab] = useState<string>(
+    () => hashItems[0]?.name ?? items[0].name,
+  );
+
+  // Sync active tab to the URL hash on initial load (so `/#projects` lands
+  // with "Projects" already highlighted before the observer catches up).
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
+    if (!isHome) return;
+    const hash = window.location.hash;
+    if (!hash) return;
+    const match = hashItems.find((i) => i.url === hash);
+    if (match) setActiveTab(match.name);
+  }, [isHome, hashItems]);
 
-    const hashItems = items.filter((i) => !i.external);
-    const sections = hashItems.map((item) => item.name);
+  // Scroll-spy via IntersectionObserver. rootMargin biases the "active" band
+  // toward roughly the top-third of the viewport, which matches how the fixed
+  // nav (top on sm+, bottom on mobile) frames the content the user is reading.
+  useEffect(() => {
+    if (!isHome || typeof window === "undefined") return;
+    if (!("IntersectionObserver" in window)) return;
 
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100;
+    const sections = hashItems
+      .map((item) => document.getElementById(item.name.toLowerCase()))
+      .filter((el): el is HTMLElement => el !== null);
+    if (sections.length === 0) return;
 
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort(
+            (a, b) => a.boundingClientRect.top - b.boundingClientRect.top,
+          );
+        if (visible.length === 0) return;
+        const nextId = visible[0].target.id;
+        const nextName = hashItems.find(
+          (i) => i.name.toLowerCase() === nextId,
+        )?.name;
+        if (nextName) setActiveTab(nextName);
+      },
+      {
+        // Trigger while the section occupies the top ~40% of the viewport.
+        rootMargin: "-20% 0px -60% 0px",
+        threshold: 0,
+      },
+    );
+
+    sections.forEach((s) => observer.observe(s));
+
+    // Pin the last section as active when the page is scrolled to the very
+    // bottom — the observer's rootMargin can miss short trailing sections.
+    const handleBottom = () => {
       if (
         window.innerHeight + window.scrollY >=
-        document.documentElement.scrollHeight - 50
+        document.documentElement.scrollHeight - 4
       ) {
-        setActiveTab(hashItems[hashItems.length - 1]?.name ?? activeTab);
-        return;
-      }
-
-      for (const section of sections) {
-        const element = document.getElementById(section.toLowerCase());
-        if (element) {
-          const offsetTop = element.offsetTop;
-          const offsetHeight = element.offsetHeight;
-
-          if (
-            scrollPosition >= offsetTop &&
-            scrollPosition < offsetTop + offsetHeight
-          ) {
-            setActiveTab(section);
-            break;
-          }
-        }
+        setActiveTab(hashItems[hashItems.length - 1].name);
       }
     };
+    window.addEventListener("scroll", handleBottom, { passive: true });
 
-    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+      window.removeEventListener("scroll", handleBottom);
     };
-    // We intentionally omit `activeTab` — this effect wires up the scroll spy
-    // and only needs to re-run when the item list changes.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [items]);
+  }, [isHome, hashItems]);
 
   return (
     <div
       className={cn(
         "fixed bottom-0 sm:top-0 left-1/2 -translate-x-1/2 z-50 mb-6 sm:pt-6",
+        "pb-[env(safe-area-inset-bottom)] sm:pb-0",
         className,
       )}
     >
       <div className="flex items-center gap-1 md:gap-3 bg-black/50 border border-white/10 backdrop-blur-xl py-1 px-1 rounded-full shadow-lg">
         {items.map((item) => {
           const Icon = item.icon;
-          const isActive = !item.external && activeTab === item.name;
-          // For route links, only mark active when the current pathname
-          // matches (so on /blog the "Blog" tab is highlighted).
+          const isHash = item.url.startsWith("#");
+          // Hash links must point back to home when we're on another route,
+          // otherwise `<Link href="#about">` on /blog would resolve to
+          // `/blog#about` (which has no target).
+          const href = isHash && !isHome ? `${HOME_ROUTE}${item.url}` : item.url;
+
+          const isActive = !item.external && isHome && activeTab === item.name;
           const isRouteActive =
             !!item.external && pathname?.startsWith(item.url);
+          const highlighted = isActive || isRouteActive;
 
           return (
             <Link
               key={item.name}
-              href={item.url}
+              href={href}
+              aria-label={item.name}
+              aria-current={highlighted ? "page" : undefined}
               onClick={() => {
-                if (!item.external) setActiveTab(item.name);
+                if (!item.external && isHome) setActiveTab(item.name);
               }}
               className={cn(
                 "relative cursor-pointer text-sm font-semibold px-3 md:px-6 py-2 rounded-full transition-colors",
                 "text-white/80 hover:text-white",
-                (isActive || isRouteActive) && "bg-white/10 text-white",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70",
+                highlighted && "bg-white/10 text-white",
               )}
-              aria-current={isActive || isRouteActive ? "page" : undefined}
             >
               <span className="hidden md:inline">{item.name}</span>
-              <span className="md:hidden">
+              <span className="md:hidden" aria-hidden="true">
                 <Icon size={18} strokeWidth={2.5} />
               </span>
-              {(isActive || isRouteActive) && (
+              {highlighted && (
                 <motion.div
                   layoutId="lamp"
                   className="absolute inset-0 w-full bg-white/5 rounded-full -z-10"
