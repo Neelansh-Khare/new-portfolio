@@ -1,4 +1,5 @@
 import { portfolioData } from "@/data/portfolio"
+import { highlightMetrics } from "@/lib/highlight"
 
 export function ExperienceSection() {
   return (
@@ -11,11 +12,15 @@ export function ExperienceSection() {
               <h3 className="text-xl md:text-2xl font-semibold mb-2 text-foreground">{exp.title}</h3>
               <p className="text-muted-foreground font-medium mb-1">{exp.company}</p>
               <p className="text-sm text-muted-foreground/60 mb-4">{exp.period}</p>
-              <ul className="space-y-2 list-disc list-inside">
-                {exp.description.map((item, itemIndex) => (
-                  <li key={itemIndex} className="text-base leading-relaxed text-muted-foreground">{item}</li>
-                ))}
-              </ul>
+              {exp.description.length > 0 && (
+                <ul className="space-y-2 list-disc list-inside">
+                  {exp.description.map((item, itemIndex) => (
+                    <li key={itemIndex} className="text-base leading-relaxed text-muted-foreground">
+                      {highlightMetrics(item)}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           ))}
         </div>
