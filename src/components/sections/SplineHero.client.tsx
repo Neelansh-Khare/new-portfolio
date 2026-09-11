@@ -14,7 +14,7 @@ export const SplineHeroClient = dynamic(
     loading: () => (
       <div
         aria-hidden="true"
-        className="w-full h-[600px] bg-black animate-pulse"
+        className="w-full h-[600px] bg-transparent animate-pulse"
       />
     ),
   },
