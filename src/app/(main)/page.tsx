@@ -17,11 +17,14 @@ export default function Home() {
           <SplineHeroClient />
         </div>
         <AboutSection />
-        <div className="container mx-auto px-4 md:px-6 pt-0 pb-8 md:pb-12">
-          <ShaderSectionClient />
-        </div>
         <ExperienceSection />
         <EducationSection />
+        <div
+          id="projects"
+          className="container mx-auto px-4 md:px-6 pt-0 pb-8 md:pb-12 scroll-mt-20"
+        >
+          <ShaderSectionClient />
+        </div>
         <ProjectsSection />
         <SkillsSection />
         <ContactSection />
