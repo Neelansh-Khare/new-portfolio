@@ -115,6 +115,7 @@ export const portfolioData: PortfolioData = {
       company: "Campfire (YC S23)",
       period: "June 2026 - Present",
       description: [
+        "Fullstack Engineer on the core application team.",
       ],
     },
     {
@@ -200,24 +201,6 @@ export const portfolioData: PortfolioData = {
       link: "https://github.com/Neelansh-Khare/tradingScriptBardSchwab",
     },
     {
-      title: "Compiler and Interpreter",
-      tech: "Python",
-      description: [
-        "Created full compiler/interpreter for Tiny language including lexer, parser, and semantic analyzer.",
-        "Implemented raw source processing to executable code with error handling.",
-      ],
-      link: "https://github.com/Neelansh-Khare",
-    },
-    {
-      title: "Search Engine",
-      tech: "Python",
-      description: [
-        "Implemented indexing, ranking, and query processing for large text corpora with sub-second response.",
-        "Optimized for high performance retrieval on custom datasets.",
-      ],
-      link: "https://github.com/Neelansh-Khare",
-    },
-    {
       title: "Fablix",
       tech: "Java, Servlets, MySQL, AWS",
       description: [
@@ -298,11 +281,6 @@ export const portfolioData: PortfolioData = {
         name: "GitHub",
         url: "https://github.com/Neelansh-Khare",
         label: "github.com/Neelansh-Khare",
-      },
-      {
-        name: "Blog",
-        url: "/blog",
-        label: "Read the blog →",
       },
       {
         name: "X",
