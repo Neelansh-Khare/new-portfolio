@@ -64,7 +64,7 @@ export const portfolioData: PortfolioData = {
       "Software Engineer specializing in backend systems, distributed infrastructure, and product engineering. Experienced in building production-grade automation systems, scalable APIs, and data pipelines.",
   },
   about: [
-    "I am a Software Engineer at Polaris Wireless, specializing in backend systems and distributed infrastructure. I previously worked as a Software Engineer Co-op at the University of California, Irvine, where I developed automation systems and full-stack applications.",
+    "I am a Software Engineer at Campfire (YC S23), working as a fullstack engineer on the core application team. Previously, I built backend systems and distributed infrastructure at Polaris Wireless, and worked as a Software Engineer Co-op at the University of California, Irvine, where I developed automation systems and full-stack applications.",
     "My technical expertise spans Python, Java, and C++, with a strong focus on building scalable APIs, data pipelines, and orchestration tooling. I have experience with technologies like Hadoop, Spark, Kafka, and Kubernetes in enterprise environments.",
     "I am also passionate about AI and Machine Learning. As an Undergraduate Researcher at the He Lab, I architected deep learning pipelines for scientific applications. I enjoy working on projects that bridge the gap between complex infrastructure and intelligent systems.",
     "Beyond coding, I am an active community leader, having served as President of the Indian Subcontinental Club and contributed to organizations like ICSSC and Legacy Robotics.",
