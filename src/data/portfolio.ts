@@ -201,6 +201,24 @@ export const portfolioData: PortfolioData = {
       link: "https://github.com/Neelansh-Khare/tradingScriptBardSchwab",
     },
     {
+      title: "Compiler and Interpreter",
+      tech: "Python",
+      description: [
+        "Created full compiler/interpreter for Tiny language including lexer, parser, and semantic analyzer.",
+        "Implemented raw source processing to executable code with error handling.",
+      ],
+      link: "https://github.com/Neelansh-Khare",
+    },
+    {
+      title: "Search Engine",
+      tech: "Python",
+      description: [
+        "Implemented indexing, ranking, and query processing for large text corpora with sub-second response.",
+        "Optimized for high performance retrieval on custom datasets.",
+      ],
+      link: "https://github.com/Neelansh-Khare",
+    },
+    {
       title: "Fablix",
       tech: "Java, Servlets, MySQL, AWS",
       description: [
