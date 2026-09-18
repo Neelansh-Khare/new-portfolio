@@ -7,6 +7,11 @@ export function ProjectsSection() {
       className="pt-4 md:pt-6 pb-16 md:pb-24 px-4 md:px-6 relative z-40 transform-gpu"
     >
       <div className="max-w-4xl mx-auto">
+        <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-10 md:mb-12 max-w-2xl">
+          A mix of things I&apos;ve shipped on my own time — side projects,
+          hackathon submissions, and coursework. Each one is something I built
+          to learn a specific tool, scratch an itch, or take an idea end-to-end.
+        </p>
         <div className="grid gap-8 md:grid-cols-2">
           {portfolioData.projects.map((project, index) => (
             <div key={index} className="border border-border/50 rounded-lg p-6 hover:shadow-lg transition-shadow bg-card/10 backdrop-blur-md pointer-events-auto">
