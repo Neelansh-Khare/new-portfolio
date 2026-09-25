@@ -40,7 +40,7 @@ export function SplineHero() {
             <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href="#projects"
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-semibold hover:bg-neutral-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-white/20 text-white font-semibold hover:bg-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
               >
                 See projects
                 <ArrowRight className="w-4 h-4" aria-hidden="true" />
