@@ -21,6 +21,21 @@ export function ExperienceSection() {
                   ))}
                 </ul>
               )}
+              {exp.links && exp.links.length > 0 && (
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {exp.links.map((link) => (
+                    <a
+                      key={link.url}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3 py-1 bg-card/10 backdrop-blur-sm border border-border/50 rounded-full text-sm text-muted-foreground hover:text-primary hover:border-primary transition-colors"
+                    >
+                      {link.label} ↗
+                    </a>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>

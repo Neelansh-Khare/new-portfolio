@@ -3,6 +3,7 @@ export interface Experience {
   company: string;
   period: string;
   description: string[];
+  links?: { label: string; url: string }[];
 }
 
 export interface Project {
@@ -10,6 +11,15 @@ export interface Project {
   tech: string;
   description: string[];
   link?: string;
+  /** Path under /public, e.g. "/images/projects/foo.webp". */
+  image?: string;
+}
+
+export interface ResearchProject {
+  title: string;
+  tech: string;
+  summary: string;
+  link: string;
 }
 
 export interface SkillCategory {
@@ -48,6 +58,7 @@ export interface PortfolioData {
   leadership: Leadership[];
   experience: Experience[];
   projects: Project[];
+  research: ResearchProject[];
   skills: SkillCategory[];
   contact: {
     email: string;
@@ -228,6 +239,7 @@ export const portfolioData: PortfolioData = {
       link: "https://github.com/Neelansh-Khare/Fablix",
     },
   ],
+  research: [],
   skills: [
     {
       name: "Languages",
