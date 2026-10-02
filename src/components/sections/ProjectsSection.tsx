@@ -1,12 +1,26 @@
-import { portfolioData } from "@/data/portfolio"
+import { portfolioData } from "@/data/portfolio";
 
-// Plain <img> src strings aren't prefixed with next.config's basePath, so do it here.
-const BASE_PATH = "/new-portfolio"
+import { BASE_PATH } from "@/lib/utils";
 
 function ExternalLinkIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-external-link"><path d="M15 3h6v6" /><path d="M10 14 21 3" /><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /></svg>
-  )
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="lucide lucide-external-link"
+    >
+      <path d="M15 3h6v6" />
+      <path d="M10 14 21 3" />
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+    </svg>
+  );
 }
 
 export function ProjectsSection() {
@@ -18,7 +32,10 @@ export function ProjectsSection() {
       <div className="max-w-4xl mx-auto">
         <div className="grid gap-8 md:grid-cols-2">
           {portfolioData.projects.map((project, index) => (
-            <div key={index} className="border border-border/50 rounded-lg overflow-hidden hover:shadow-lg transition-shadow bg-card/10 backdrop-blur-md pointer-events-auto flex flex-col">
+            <div
+              key={index}
+              className="border border-border/50 rounded-lg overflow-hidden hover:shadow-lg transition-shadow bg-card/10 backdrop-blur-md pointer-events-auto flex flex-col"
+            >
               {project.image && (
                 <a
                   href={project.link}
@@ -56,7 +73,9 @@ export function ProjectsSection() {
                 <p className="text-sm text-muted-foreground mb-4 font-medium">{project.tech}</p>
                 <ul className="space-y-2 list-disc list-inside">
                   {project.description.map((item, itemIndex) => (
-                    <li key={itemIndex} className="text-sm leading-relaxed text-muted-foreground">{item}</li>
+                    <li key={itemIndex} className="text-sm leading-relaxed text-muted-foreground">
+                      {item}
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -67,20 +86,45 @@ export function ProjectsSection() {
         {portfolioData.research.length > 0 && (
           <div id="research" className="mt-16 scroll-mt-20">
             <h2 className="text-2xl md:text-3xl font-bold mb-8 text-foreground">Research</h2>
-            <div className="space-y-6">
+            <div className="space-y-8">
               {portfolioData.research.map((item, index) => (
-                <div key={index} className="border-l-2 border-primary pl-6 md:pl-8 pointer-events-auto">
-                  <a
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-lg md:text-xl font-semibold mb-1 text-foreground hover:text-primary transition-colors inline-flex items-center gap-2"
-                  >
-                    {item.title}
-                    <ExternalLinkIcon />
-                  </a>
-                  <p className="text-sm text-muted-foreground mb-2 font-medium">{item.tech}</p>
-                  <p className="text-sm md:text-base leading-relaxed text-muted-foreground">{item.summary}</p>
+                <div
+                  key={index}
+                  className="border border-border/50 rounded-lg overflow-hidden bg-card/10 backdrop-blur-md pointer-events-auto md:grid md:grid-cols-[2fr_3fr]"
+                >
+                  {item.image && (
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      tabIndex={-1}
+                      aria-hidden="true"
+                      className="block aspect-[16/10] md:aspect-auto md:flex md:items-center overflow-hidden border-b md:border-b-0 md:border-r border-border/50 bg-black/40"
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={`${BASE_PATH}${item.image}`}
+                        alt=""
+                        loading="lazy"
+                        width={1280}
+                        height={800}
+                        className="h-full w-full object-cover object-top md:object-contain md:object-center"
+                      />
+                    </a>
+                  )}
+                  <div className="p-6">
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-lg md:text-xl font-semibold mb-1 text-foreground hover:text-primary transition-colors inline-flex items-center gap-2"
+                    >
+                      {item.title}
+                      <ExternalLinkIcon />
+                    </a>
+                    <p className="text-sm text-muted-foreground mb-2 font-medium">{item.tech}</p>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{item.summary}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -88,5 +132,5 @@ export function ProjectsSection() {
         )}
       </div>
     </section>
-  )
+  );
 }
