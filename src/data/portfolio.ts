@@ -21,7 +21,7 @@ export interface ResearchProject {
   title: string;
   tech: string;
   summary: string;
-  link: string;
+  link?: string;
   image?: string;
 }
 
@@ -80,7 +80,7 @@ export const portfolioData: PortfolioData = {
   about: [
     "I am a Software Engineer at Campfire (YC S23), where I work as a fullstack engineer on the core application team, specializing in product and distributed systems engineering. Previously, I built backend systems and distributed infrastructure at Polaris Wireless, and worked as a Software Engineer Co-op at the University of California, Irvine, where I developed automation systems and full-stack applications.",
     "My technical expertise spans Python, Java, and C++, with a strong focus on building scalable APIs, data pipelines, and orchestration tooling. I have experience with technologies like Hadoop, Spark, Kafka, and Kubernetes in enterprise environments.",
-    "I am also passionate about AI and Machine Learning. As an Undergraduate Researcher at the He Lab, I architected deep learning pipelines for scientific applications. I continue that work through independent research on retrieval-augmented generation, studying retrieval saturation at scale and reproducing the \"Lost in the Middle\" long-context effect. I enjoy working on projects that bridge the gap between complex infrastructure and intelligent systems.",
+    'I am also passionate about AI and Machine Learning. As an Undergraduate Researcher at the He Lab, I architected deep learning pipelines for scientific applications. I continue that work through independent research on retrieval-augmented generation, studying retrieval saturation at scale and reproducing the "Lost in the Middle" long-context effect. I enjoy working on projects that bridge the gap between complex infrastructure and intelligent systems.',
     "Outside of work, I am an open source contributor, most notably to Letta, the open source framework for building stateful LLM agents.",
     "Beyond coding, I am an active community leader, having served as President of the Indian Subcontinental Club and contributed to organizations like ICSSC and Legacy Robotics.",
   ],
@@ -97,7 +97,8 @@ export const portfolioData: PortfolioData = {
       role: "President",
       organization: "Indian Subcontinental Club",
       period: "2023 - 2024",
-      description: "Led the largest cultural organization on campus, managing a board of 30 members and organizing events for 500+ attendees.",
+      description:
+        "Led the largest cultural organization on campus, managing a board of 30 members and organizing events for 500+ attendees.",
     },
     {
       role: "Software Developer",
@@ -115,23 +116,22 @@ export const portfolioData: PortfolioData = {
       role: "Data & Analytics",
       organization: "Sigma Pi",
       period: "2023 - 2025",
-      description: "Analyzed fraternity data to optimize recruitment, event planning, and finances.",
+      description:
+        "Analyzed fraternity data to optimize recruitment, event planning, and finances.",
     },
     {
       role: "Volunteer",
       organization: "SF Civic Tech",
       period: "2025 - Present",
       description: "Helped with the SF Safehome project website and backend.",
-    }
+    },
   ],
   experience: [
     {
       title: "Software Engineer",
       company: "Campfire (YC S23)",
       period: "June 2026 - Present",
-      description: [
-        "Fullstack Engineer on the core application team.",
-      ],
+      description: ["Fullstack Engineer on the core application team."],
     },
     {
       title: "Software Engineer",
@@ -154,8 +154,14 @@ export const portfolioData: PortfolioData = {
         "Developed FastAPI + React fullstack dashboard, enabling real-time visualization of municipal datasets.",
       ],
       links: [
-        { label: "RFP Discovery (live demo)", url: "https://neelansh-khare.github.io/rfp-discovery-demo/" },
-        { label: "RFP Ranking System", url: "https://github.com/Neelansh-Khare/rfp-fullstack-project" },
+        {
+          label: "RFP Discovery (live demo)",
+          url: "https://neelansh-khare.github.io/rfp-discovery-demo/",
+        },
+        {
+          label: "RFP Ranking System",
+          url: "https://github.com/Neelansh-Khare/rfp-fullstack-project",
+        },
         { label: "Multimodal RFP RAG", url: "https://github.com/Neelansh-Khare/rfp-rag-system" },
       ],
       image: "/images/projects/rfp-discovery-demo.webp",
@@ -182,7 +188,10 @@ export const portfolioData: PortfolioData = {
         "Developed synthetic data generation pipeline to create 10,000+ labeled images, enabling robust training.",
       ],
       links: [
-        { label: "Nanoparticle image analysis pipeline", url: "https://github.com/Neelansh-Khare/research-scripts-particle-prediction" },
+        {
+          label: "Nanoparticle image analysis pipeline",
+          url: "https://github.com/Neelansh-Khare/research-scripts-particle-prediction",
+        },
       ],
       image: "/images/projects/research-scripts-particle-prediction.webp",
     },
@@ -196,7 +205,6 @@ export const portfolioData: PortfolioData = {
         "Categorizes spending with user rules or an optional LLM (OpenRouter, Gemini, or local Ollama), which also extracts transactions from uploaded statements.",
         "Envelope budgeting with rollover, safe-to-spend and overspending alerts, plus subscriptions, net worth, debt payoff, goals, and an income-to-spending Sankey view.",
       ],
-      link: "https://github.com/Neelansh-Khare/auto-budget",
       image: "/images/projects/auto-budget.webp",
     },
     {
@@ -207,7 +215,6 @@ export const portfolioData: PortfolioData = {
         "Local-LLM resume tailoring, ATS scoring, job match scores, and outreach email generation, with LaTeX-rendered PDF resumes.",
         "JWT auth with per-user data isolation, Gmail sync for inbox status updates, a LinkedIn browser extension for saving jobs, and Docker + Postgres deployment.",
       ],
-      link: "https://github.com/Neelansh-Khare/JobSearchAI",
       image: "/images/projects/jobsearchai.webp",
     },
     {
@@ -218,7 +225,6 @@ export const portfolioData: PortfolioData = {
         "Unifies 8 connectors (Gmail, Calendar, Notion, Obsidian, Slack, Linear, GitHub, Todoist) into a SQLite-backed knowledge graph used for graph-augmented retrieval.",
         "Every write is approval-gated, provenance-tracked, audited, and reversible where possible; runs fully local on Ollama with schema-constrained output.",
       ],
-      link: "https://github.com/Neelansh-Khare/life-os",
       image: "/images/projects/life-os.webp",
     },
     {
@@ -229,7 +235,6 @@ export const portfolioData: PortfolioData = {
         "AI lab assistant and explainable match scoring (methods, fields, LLM re-rank, timeline fit) on Supabase Edge Functions, plus cold-email drafting and paper chat.",
         "Production-minded backend with row-level security, notification and email outbox jobs, department roles, interview scheduling, and CI covering typecheck, lint, and RLS tests.",
       ],
-      link: "https://github.com/Neelansh-Khare/academia-hub",
       image: "/images/projects/academia-hub.webp",
     },
     {
@@ -240,7 +245,6 @@ export const portfolioData: PortfolioData = {
         "Tiered market-monitoring loops and local-LLM news scoring, with hard risk gates: exposure and daily-loss budgets, a kill switch, and explicit live-trading acknowledgement.",
         "Paper (shadow) mode with fill simulation and fee-accurate PnL, a snapshot-replay backtester, and a FastAPI operator console for positions, orders, decisions, and alerts.",
       ],
-      link: "https://github.com/Neelansh-Khare/openclawtrading",
       image: "/images/projects/openclawtrading.webp",
     },
     {
@@ -251,7 +255,6 @@ export const portfolioData: PortfolioData = {
         "Framework-free TypeScript domain core with SQLite as the source of truth, versioned migrations, and a USDA food-ingestion pipeline producing an FTS5 search database.",
         "Kalman-filter energy model that turns intake and weigh-ins into trend weight, adaptive expenditure with uncertainty, and guarded calorie and macro targets.",
       ],
-      link: "https://github.com/Neelansh-Khare/personal-health-app",
       image: "/images/projects/personal-health-app.webp",
     },
     {
@@ -262,7 +265,6 @@ export const portfolioData: PortfolioData = {
         "Local-LLM pipeline with JSON-schema outputs and repair prompts for ranking, script writing, fact-check revisions, scene planning, and quality gates.",
         "Built to run unattended: resumable SQLite-backed jobs, retry with backoff, disk guards, rotating logs, and failure notifications.",
       ],
-      link: "https://github.com/Neelansh-Khare/content-gen",
       image: "/images/projects/content-gen.webp",
     },
     {
@@ -272,7 +274,6 @@ export const portfolioData: PortfolioData = {
         "Proof-of-concept multi-agent pipeline converting Dynamical Graph Grammar models between research math (LaTeX + graph diagrams) and the FoxFlow simulation DSL.",
         "Agents are grounded with per-agent RAG over research papers; a typed Pydantic model is the hub representation, with deterministic FoxFlow emission and validation.",
       ],
-      link: "https://github.com/Neelansh-Khare/agentic-dgg-conversion",
       image: "/images/projects/agentic-dgg-conversion.webp",
     },
     {
@@ -282,7 +283,6 @@ export const portfolioData: PortfolioData = {
         "Reproducible retrieval-evaluation framework testing whether LLM-extracted concepts add ranking signal beyond content similarity.",
         "Compares 10 retrieval methods (BM25, dense, HyDE, fused, oracle and shuffled-concept controls) across lexical-overlap subsets with bootstrap CIs and significance testing.",
       ],
-      link: "https://github.com/Neelansh-Khare/concept-rag",
       image: "/images/projects/concept-rag.webp",
     },
     {
@@ -340,23 +340,32 @@ export const portfolioData: PortfolioData = {
       title: "Retrieval Saturation in Retrieval-Augmented Generation",
       tech: "Python, sentence-transformers, FAISS, SciQ, MS MARCO",
       summary:
-        "Studies how a RAG retriever quietly loses its ability to separate the right document from near-neighbors as the corpus grows, and proposes score margin, score entropy, and rank-overlap metrics as early warnings. On unique SciQ + MS MARCO corpora from 11.7k to 94k documents, Recall@5 and top-1 score margin both decline with scale, while redundant toy corpora show misleading \"false stability.\"",
-      link: "https://github.com/Neelansh-Khare/rag-research",
+        'Studies how a RAG retriever quietly loses its ability to separate the right document from near-neighbors as the corpus grows, and proposes score margin, score entropy, and rank-overlap metrics as early warnings. On unique SciQ + MS MARCO corpora from 11.7k to 94k documents, Recall@5 and top-1 score margin both decline with scale, while redundant toy corpora show misleading "false stability."',
       image: "/images/projects/rag-research.webp",
     },
     {
       title: "Lost in the Middle: Reproduction and Redundancy Analysis",
       tech: "Python, Ollama, Llama 3.2, OpenAI / Hugging Face adapters",
       summary:
-        "A lightweight, reproducible harness for the \"Lost in the Middle\" finding (Liu et al., TACL 2024) that long-context models underuse evidence placed mid-context. Includes pluggable model backends, a position-bucketed synthetic dataset, and extensions for distractor noise, context-length sweeps, and redundancy rescue, which restores accuracy across all evidence positions.",
-      link: "https://github.com/Neelansh-Khare/reproduction-research",
+        'A lightweight, reproducible harness for the "Lost in the Middle" finding (Liu et al., TACL 2024) that long-context models underuse evidence placed mid-context. Includes pluggable model backends, a position-bucketed synthetic dataset, and extensions for distractor noise, context-length sweeps, and redundancy rescue, which restores accuracy across all evidence positions.',
       image: "/images/projects/reproduction-research.webp",
     },
   ],
   skills: [
     {
       name: "Languages",
-      skills: ["Python", "Java", "C++", "SQL", "JavaScript", "Scala", "Go", "TypeScript", "Shell", "C"],
+      skills: [
+        "Python",
+        "Java",
+        "C++",
+        "SQL",
+        "JavaScript",
+        "Scala",
+        "Go",
+        "TypeScript",
+        "Shell",
+        "C",
+      ],
     },
     {
       name: "Frameworks & Systems",
@@ -377,7 +386,18 @@ export const portfolioData: PortfolioData = {
     },
     {
       name: "Infra & Tools",
-      skills: ["Git", "GitHub Actions", "Jenkins", "AWS", "GCP", "Azure", "PostgreSQL", "MySQL", "MongoDB", "Linux"],
+      skills: [
+        "Git",
+        "GitHub Actions",
+        "Jenkins",
+        "AWS",
+        "GCP",
+        "Azure",
+        "PostgreSQL",
+        "MySQL",
+        "MongoDB",
+        "Linux",
+      ],
     },
     {
       name: "Areas of Expertise",

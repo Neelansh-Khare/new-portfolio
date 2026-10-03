@@ -23,6 +23,53 @@ function ExternalLinkIcon() {
   );
 }
 
+function Screenshot({
+  src,
+  link,
+  className,
+  imgClassName,
+}: { src: string; link?: string; className: string; imgClassName: string }) {
+  const img = (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={`${BASE_PATH}${src}`}
+      alt=""
+      loading="lazy"
+      width={1280}
+      height={800}
+      className={imgClassName}
+    />
+  );
+  if (!link) return <div className={className}>{img}</div>;
+  return (
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      tabIndex={-1}
+      aria-hidden="true"
+      className={className}
+    >
+      {img}
+    </a>
+  );
+}
+
+function Title({ title, link, className }: { title: string; link?: string; className: string }) {
+  if (!link) return <h3 className={className}>{title}</h3>;
+  return (
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`${className} hover:text-primary transition-colors inline-flex items-center gap-2`}
+    >
+      {title}
+      <ExternalLinkIcon />
+    </a>
+  );
+}
+
 export function ProjectsSection() {
   return (
     <section
@@ -37,39 +84,19 @@ export function ProjectsSection() {
               className="border border-border/50 rounded-lg overflow-hidden hover:shadow-lg transition-shadow bg-card/10 backdrop-blur-md pointer-events-auto flex flex-col"
             >
               {project.image && (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  tabIndex={-1}
-                  aria-hidden="true"
+                <Screenshot
+                  src={project.image}
+                  link={project.link}
                   className="block aspect-[16/10] overflow-hidden border-b border-border/50 bg-black/40"
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={`${BASE_PATH}${project.image}`}
-                    alt=""
-                    loading="lazy"
-                    width={1280}
-                    height={800}
-                    className="h-full w-full object-cover object-top transition-transform duration-300 hover:scale-[1.02]"
-                  />
-                </a>
+                  imgClassName="h-full w-full object-cover object-top transition-transform duration-300 hover:scale-[1.02]"
+                />
               )}
               <div className="p-6">
-                {project.link ? (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xl font-semibold mb-2 text-foreground hover:text-primary transition-colors inline-flex items-center gap-2"
-                  >
-                    {project.title}
-                    <ExternalLinkIcon />
-                  </a>
-                ) : (
-                  <h3 className="text-xl font-semibold mb-2 text-foreground">{project.title}</h3>
-                )}
+                <Title
+                  title={project.title}
+                  link={project.link}
+                  className="text-xl font-semibold mb-2 text-foreground"
+                />
                 <p className="text-sm text-muted-foreground mb-4 font-medium">{project.tech}</p>
                 <ul className="space-y-2 list-disc list-inside">
                   {project.description.map((item, itemIndex) => (
@@ -93,35 +120,19 @@ export function ProjectsSection() {
                   className="border border-border/50 rounded-lg overflow-hidden bg-card/10 backdrop-blur-md pointer-events-auto md:grid md:grid-cols-[2fr_3fr]"
                 >
                   {item.image && (
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      tabIndex={-1}
-                      aria-hidden="true"
+                    <Screenshot
+                      src={item.image}
+                      link={item.link}
                       className="block aspect-[16/10] md:aspect-auto md:flex md:items-center overflow-hidden border-b md:border-b-0 md:border-r border-border/50 bg-black/40"
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={`${BASE_PATH}${item.image}`}
-                        alt=""
-                        loading="lazy"
-                        width={1280}
-                        height={800}
-                        className="h-full w-full object-cover object-top md:object-contain md:object-center"
-                      />
-                    </a>
+                      imgClassName="h-full w-full object-cover object-top md:object-contain md:object-center"
+                    />
                   )}
                   <div className="p-6">
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-lg md:text-xl font-semibold mb-1 text-foreground hover:text-primary transition-colors inline-flex items-center gap-2"
-                    >
-                      {item.title}
-                      <ExternalLinkIcon />
-                    </a>
+                    <Title
+                      title={item.title}
+                      link={item.link}
+                      className="text-lg md:text-xl font-semibold mb-1 text-foreground"
+                    />
                     <p className="text-sm text-muted-foreground mb-2 font-medium">{item.tech}</p>
                     <p className="text-sm leading-relaxed text-muted-foreground">{item.summary}</p>
                   </div>
