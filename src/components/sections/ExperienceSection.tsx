@@ -1,5 +1,6 @@
-import { portfolioData } from "@/data/portfolio"
-import { highlightMetrics } from "@/lib/highlight"
+import { portfolioData } from "@/data/portfolio";
+import { highlightMetrics } from "@/lib/highlight";
+import { BASE_PATH } from "@/lib/utils";
 
 export function ExperienceSection() {
   return (
@@ -9,7 +10,9 @@ export function ExperienceSection() {
         <div className="space-y-12">
           {portfolioData.experience.map((exp, index) => (
             <div key={index} className="border-l-2 border-primary pl-6 md:pl-8">
-              <h3 className="text-xl md:text-2xl font-semibold mb-2 text-foreground">{exp.title}</h3>
+              <h3 className="text-xl md:text-2xl font-semibold mb-2 text-foreground">
+                {exp.title}
+              </h3>
               <p className="text-muted-foreground font-medium mb-1">{exp.company}</p>
               <p className="text-sm text-muted-foreground/60 mb-4">{exp.period}</p>
               {exp.description.length > 0 && (
@@ -21,11 +24,45 @@ export function ExperienceSection() {
                   ))}
                 </ul>
               )}
+              {exp.links && exp.links.length > 0 && (
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {exp.links.map((link) => (
+                    <a
+                      key={link.url}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3 py-1 bg-card/10 backdrop-blur-sm border border-border/50 rounded-full text-sm text-muted-foreground hover:text-primary hover:border-primary transition-colors"
+                    >
+                      {link.label} ↗
+                    </a>
+                  ))}
+                </div>
+              )}
+              {exp.image && (
+                <a
+                  href={exp.links?.[0]?.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  tabIndex={-1}
+                  aria-hidden="true"
+                  className="mt-4 block max-w-md aspect-[16/10] overflow-hidden rounded-lg border border-border/50 bg-black/40"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`${BASE_PATH}${exp.image}`}
+                    alt=""
+                    loading="lazy"
+                    width={1280}
+                    height={800}
+                    className="h-full w-full object-cover object-top"
+                  />
+                </a>
+              )}
             </div>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
-
