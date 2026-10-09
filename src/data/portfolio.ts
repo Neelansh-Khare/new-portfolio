@@ -347,7 +347,7 @@ export const portfolioData: PortfolioData = {
       title: "Lost in the Middle: Reproduction and Redundancy Analysis",
       tech: "Python, Ollama, Llama 3.2, OpenAI / Hugging Face adapters",
       summary:
-        'A lightweight, reproducible harness for the "Lost in the Middle" finding (Liu et al., TACL 2024) that long-context models underuse evidence placed mid-context. Includes pluggable model backends, a position-bucketed synthetic dataset, and extensions for distractor noise, context-length sweeps, and redundancy rescue, which restores accuracy across all evidence positions.',
+        'A lightweight, reproducible harness for the "Lost in the Middle" finding (Liu et al., TACL 2024) that long-context models underuse evidence placed mid-context. Includes pluggable model backends (heuristic, Ollama, OpenAI, Hugging Face), a position-bucketed synthetic dataset, and extensions for distractor noise, semantic distractors, context-length sweeps, and redundancy rescue, with a Llama 3.2 3B pilot run locally.',
       image: "/images/projects/reproduction-research.webp",
     },
   ],

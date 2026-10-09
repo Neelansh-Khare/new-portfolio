@@ -12,8 +12,10 @@ Every post is an object in the `blogData` array in `src/data/blog.ts`:
   title: "The 'U-Shape' Reality & Query Stability",
   date: "2026-03-29",                     // ISO 8601 date (YYYY-MM-DD) — used for sorting & <time dateTime>
   description: "This week...",            // Optional. One-line summary used in metadata and the /blog index.
+  tags: ["RAG Saturation"],               // Optional. Project tags shown on /blog, the post page and as RSS categories.
   content: [                              // Array of paragraphs (plain strings)
     "First paragraph.",
+    "## A subheading",                    // A paragraph starting with "## " renders as a subheading
     "Second paragraph.",
   ],
 }
@@ -24,6 +26,8 @@ Rules:
 - **`slug` must be unique** across all posts and must match `[a-z0-9-]+`. Bad: `"Weekly_Update"`. Good: `"weekly-update-week-3"`.
 - **`date` must be an ISO 8601 date**, i.e. `"YYYY-MM-DD"`. Do **not** use free-form strings like `"March 29, 2026"` — those cannot be sorted correctly and will not render into a valid `<time dateTime>`.
 - **Order in the array does not matter.** Posts are sorted by `date` descending at render time by `src/lib/blog.ts`.
+- **`tags`** are optional. Reuse existing tag names (`RAG Saturation`, `Lost in the Middle`, `DGG Conversion`, `Concept-Guided RAG`) so posts group consistently.
+- **Subheadings:** start a paragraph with `## ` to render it as a subheading. Don't make the first paragraph a subheading, since it is the fallback summary when `description` is missing.
 - **`description`** is optional but strongly recommended: it becomes the post's `<meta name="description">`, its Open Graph description, and its `/blog` index summary. If omitted, the first paragraph is used as a fallback.
 
 ## 2. Adding a new post
