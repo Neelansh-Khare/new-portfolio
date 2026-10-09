@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PostTags } from "@/components/blog/PostTags";
 import { getAllPosts, getPostSummary, formatPostDate } from "@/lib/blog";
 
 export const metadata = {
@@ -43,6 +44,7 @@ export default function BlogPage() {
               >
                 {formatPostDate(post.date)}
               </time>
+              <PostTags tags={post.tags} className="mt-3" />
             </div>
 
             <p className="text-gray-300 leading-relaxed mb-4">

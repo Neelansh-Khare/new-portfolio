@@ -35,9 +35,15 @@ export function GET() {
       <link>${url}</link>
       <guid isPermaLink="true">${url}</guid>
       <pubDate>${toRFC822(post.date)}</pubDate>
-      <description>${escapeXml(summary)}</description>
+      <description>${escapeXml(summary)}</description>${(post.tags ?? [])
+        .map((tag) => `\n      <category>${escapeXml(tag)}</category>`)
+        .join("")}
       <content:encoded><![CDATA[${post.content
-        .map((p) => `<p>${p}</p>`) 
+        .map((p) =>
+          p.startsWith("## ")
+            ? `<h2>${escapeXml(p.slice(3))}</h2>`
+            : `<p>${escapeXml(p)}</p>`,
+        )
         .join("\n")}]]></content:encoded>
     </item>`;
     })
