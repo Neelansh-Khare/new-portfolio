@@ -7,7 +7,9 @@ export interface BlogPost {
   date: string;
   /** Optional summary. Used for metadata and the /blog index card. */
   description?: string;
-  /** Body content as an array of paragraphs. */
+  /** Optional project tags shown on the index and post page. */
+  tags?: string[];
+  /** Body content as an array of paragraphs. A paragraph starting with "## " renders as a subheading. */
   content: string[];
 }
 

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { PostTags } from "@/components/blog/PostTags";
 import {
   formatPostDate,
   getAllPosts,
@@ -75,12 +76,22 @@ export default function BlogPostPage({ params }: PageProps) {
           >
             {formatPostDate(post.date)}
           </time>
+          <PostTags tags={post.tags} className="mt-4" />
         </header>
 
         <div className="space-y-5 text-gray-300 leading-relaxed">
-          {post.content.map((paragraph, idx) => (
-            <p key={idx}>{paragraph}</p>
-          ))}
+          {post.content.map((paragraph, idx) =>
+            paragraph.startsWith("## ") ? (
+              <h2
+                key={idx}
+                className="pt-4 text-xl font-semibold font-heading text-white"
+              >
+                {paragraph.slice(3)}
+              </h2>
+            ) : (
+              <p key={idx}>{paragraph}</p>
+            ),
+          )}
         </div>
       </article>
 
